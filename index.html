@@ -172,6 +172,7 @@ dialog { background: #fff; }
 */
 window.TRIP = {
   id: "brian-dracup-yvr-bos-2026-10",
+  event: "Cliocon",   // shown in the top bar
   currency: "CAD",
   traveler: {
     name: "Brian Dracup",
@@ -481,8 +482,8 @@ window.TRIP = {
     dlg = $("lightbox"); dlgImg = $("lightbox-img"); dlgCap = $("lightbox-cap");
     $("lightbox-close").addEventListener("click", function () { dlg.close(); });
     dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
-    document.title = T.traveler.name + " flight guide";
-    $("app-title").textContent = T.traveler.name + ": " + T.summary.title;
+    document.title = (T.event ? T.event + " · " : "") + T.traveler.name + " flight guide";
+    $("app-title").textContent = (T.event ? T.event + " · " : "") + T.traveler.name + ": " + T.summary.title;
     renderIntro();
     var root = $("cards");
     [whoseCard()].concat(stepCards(), extraCards()).forEach(function (n) { root.appendChild(n); });
