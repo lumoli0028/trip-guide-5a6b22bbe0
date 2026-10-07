@@ -181,7 +181,6 @@ window.TRIP = {
   },
   // Who to ask when something is not covered by this guide.
   owner: { name: "Luis" },
-  helper: { name: "Kimberly" },   // the person buying the ticket
 
   summary: {
     title: "Vancouver → Boston round trip",
@@ -249,7 +248,7 @@ window.TRIP = {
     note: "Optional: forward the United e-ticket email to Luis."
   },
 
-  // Information Kimberly needs but this file must not hold.
+  // Information the person buying the ticket needs but this file must not hold.
   privateHandoff: ["Brian's date of birth", "phone", "email", "Known Traveler Number (if any)", "your own card"],
 
   // Every captured screen, sanitized (personal details covered). See tools/sanitize.ps1.
@@ -315,7 +314,7 @@ window.TRIP = {
   function b(t) { return h("b", { text: t }); }
   function p(cls, kids) { return h("p", { class: cls }, kids); }
 
-  var legs = T.legs, owner = T.owner.name, helper = (T.helper && T.helper.name) || "there", S = T.stepScreens;
+  var legs = T.legs, owner = T.owner.name, S = T.stepScreens;
   var seatsC = legs.reduce(function (a, l) { return a + cents(l.seatCost); }, 0);
   var baseC = cents(T.price.airfare) + cents(T.price.taxes);
   var totalC = baseC + seatsC, refC = cents(T.price.total);
@@ -369,7 +368,7 @@ window.TRIP = {
   function renderIntro() {
     var go = h("a", { class: "btn", target: "_blank", rel: "noopener noreferrer", href: T.links.itinerary.url, text: T.links.itinerary.label });
     $("intro").appendChild(h("div", { class: "intro-in" }, [
-      h("h1", { text: "Thank you, " + helper + ", for helping us with this." }),
+      h("h1", { text: "Thank you for helping us with this." }),
       p("big", ["We need to buy ", b(T.traveler.name + "'s round-trip United ticket"), " today (" + T.summary.title + ", " + T.summary.dates + "). It takes about 10 minutes. Open the steps below one at a time."]),
       p("small", ["The price in this guide (about " + money(refC) + ") is a reference. It can change depending on when you buy, so don't worry about small differences. Extra legroom is the one thing that matters: " + T.traveler.name + " is tall."]),
       h("div", { class: "actions" }, [go]),
